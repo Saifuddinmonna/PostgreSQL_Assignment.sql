@@ -62,7 +62,8 @@ VALUES
 -- Running 8 SQL  queries 
 
 -- Query 1: Inserting a new student record.
-
+-- This query inserts a new record into the "students" table with your details.
+-- The "status" is set to NULL, and you can fill in your name, age, email, frontend_mark, and backend_mark.
 
 INSERT INTO students (student_id, student_name, age, email, frontend_mark, backend_mark, status)
 VALUES
@@ -70,6 +71,8 @@ VALUES
 
 
 --Query 2: Retrieving the names of all students enrolled in 'Next.js'.
+-- This query selects the names of all students who are enrolled in the course titled "Next.js".
+-- It joins the "students" and "courses" tables through the "enrollment" table, filtering by course name.
 
 SELECT s.student_name
 FROM students s
@@ -79,6 +82,8 @@ WHERE c.course_name = 'Next.js';
 
 
 --Query 3: Updating the status of the student with the highest total marks to 'Awarded'.
+-- This query finds the student with the highest combined frontend and backend marks, and updates their status to 'Awarded'.
+-- The subquery calculates the maximum total mark, which is then used in the outer query's WHERE clause.
 
 
 UPDATE students
@@ -89,13 +94,16 @@ WHERE (frontend_mark + backend_mark) = (
 );
 
 --Query 4: Deleting courses with no students enrolled.
+-- This query deletes all courses from the "courses" table that have no enrollments.
+-- The subquery finds course IDs from the "enrollment" table, and the NOT IN clause removes courses not in this list.
 
 DELETE FROM courses
 WHERE course_id NOT IN (SELECT DISTINCT course_id FROM enrollment);
 
 
 --Query 5: Retrieving the names of students with a limit of 2, starting from the 3rd student.
-
+-- This query selects student names with a limit of 2 rows, starting from the 3rd student.
+-- The OFFSET skips the first two records, and the LIMIT ensures only 2 records are returned.
 
 SELECT student_name
 FROM students
@@ -104,6 +112,8 @@ LIMIT 2 OFFSET 2;
 
 
 --Query 6: Retrieving course names and the number of students enrolled in each course.
+-- This query returns the name of each course along with the number of students enrolled.
+-- It uses LEFT JOIN to ensure all courses are listed, even if no students are enrolled, and groups by course name.
 
 SELECT c.course_name, COUNT(e.student_id) AS students_enrolled
 FROM courses c
@@ -112,13 +122,16 @@ GROUP BY c.course_name;
 
 
 --Query 7: Calculating the average age of all students.
+-- This query calculates the average age of students in the "students" table.
+-- The AVG() function computes the mean value of the "age" column for all records. 
 
 SELECT AVG(age) AS average_age
 FROM students;
 
 
 --Query 8: Retrieving the names of students with email addresses containing 'example.com'.
-
+-- This query selects the names of students whose email addresses contain the string "example.com".
+-- It uses the LIKE operator with a wildcard (%) to search for "example.com" anywhere in the email address.
 
 SELECT student_name
 FROM students
