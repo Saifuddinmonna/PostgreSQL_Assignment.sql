@@ -40,7 +40,7 @@ VALUES
 (6, 'Hasan', 23, 'hasan@gmail.com', NULL, NULL, NULL);
 
 
--- Insert sample data into courses
+-- Inserting sample data into courses
 
 INSERT INTO courses (course_id, course_name, credits)
 VALUES
@@ -50,7 +50,7 @@ VALUES
 (4, 'Prisma', 3);
 
 
--- Insert sample data into enrollment
+-- Inserting sample data into enrollment
 INSERT INTO enrollment (enrollment_id, student_id, course_id)
 VALUES
 (1, 1, 1),
@@ -59,9 +59,9 @@ VALUES
 (4, 3, 2);
 
 
--- Run SQL queries 
+-- Running 8 SQL  queries 
 
--- Query 1: Insert a new student record.
+-- Query 1: Inserting a new student record.
 
 
 INSERT INTO students (student_id, student_name, age, email, frontend_mark, backend_mark, status)
@@ -69,7 +69,7 @@ VALUES
 (7, 'Saifuddin Ahammed', 31, 'saifuddinmonna@gmail.com', 30, 40, NULL);
 
 
---Query 2: Retrieve the names of all students enrolled in 'Next.js'.
+--Query 2: Retrieving the names of all students enrolled in 'Next.js'.
 
 SELECT s.student_name
 FROM students s
@@ -78,7 +78,7 @@ JOIN courses c ON e.course_id = c.course_id
 WHERE c.course_name = 'Next.js';
 
 
---Query 3: Update the status of the student with the highest total marks to 'Awarded'.
+--Query 3: Updating the status of the student with the highest total marks to 'Awarded'.
 
 
 UPDATE students
@@ -88,7 +88,7 @@ WHERE (frontend_mark + backend_mark) = (
     FROM students
 );
 
---Query 4: Delete courses with no students enrolled.
+--Query 4: Deleting courses with no students enrolled.
 
 DELETE FROM courses
 WHERE course_id NOT IN (SELECT DISTINCT course_id FROM enrollment);
@@ -111,7 +111,7 @@ LEFT JOIN enrollment e ON c.course_id = e.course_id
 GROUP BY c.course_name;
 
 
---Query 7: Calculate the average age of all students.
+--Query 7: Calculating the average age of all students.
 
 SELECT AVG(age) AS average_age
 FROM students;
