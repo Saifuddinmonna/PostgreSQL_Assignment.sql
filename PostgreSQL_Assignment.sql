@@ -1,8 +1,8 @@
 -- Active: 1730980958970@@127.0.0.1@5432@university_db
 
--- Create students table
+-- Creating  students table
 CREATE TABLE students (
-    student_id SERIAL PRIMARY KEY,
+    student_id INT PRIMARY KEY,
     student_name VARCHAR(50) NOT NULL,
     age INT,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -11,14 +11,14 @@ CREATE TABLE students (
     status VARCHAR(20)
 );
 
--- Create courses table
+-- Creating courses table
 CREATE TABLE courses (
     course_id INT PRIMARY KEY,
     course_name VARCHAR(100) NOT NULL,
     credits INT CHECK (credits > 0)
 );
 
--- Create enrollment table
+-- Creating enrollment table
 CREATE TABLE enrollment (
     enrollment_id INT PRIMARY KEY,
     student_id INT,
@@ -28,7 +28,7 @@ CREATE TABLE enrollment (
 );
 
 
--- Insert sample data into students
+-- Inserting sample data into students
 
 INSERT INTO students (student_id, student_name, age, email, frontend_mark, backend_mark, status)
 VALUES
@@ -66,7 +66,7 @@ VALUES
 
 INSERT INTO students (student_id, student_name, age, email, frontend_mark, backend_mark, status)
 VALUES
-(7, 'YourName', YourAge, 'YourEmail', YourMark, YourMark, NULL);
+(7, 'Saifuddin Ahammed', 31, 'saifuddinmonna@gmail.com', 30, 40, NULL);
 
 
 --Query 2: Retrieve the names of all students enrolled in 'Next.js'.
